@@ -1,6 +1,7 @@
 import 'package:cloudnapp/Screen/Join.dart';
 import 'package:cloudnapp/Screen/RemakePassword.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'MainPage.dart';
 
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _usernameController,
                   decoration: InputDecoration(
                     filled: true,
-                    labelText: 'Username',
+                    labelText: 'ID',
                   ),
                 ),
                 SizedBox(height: 12,),
@@ -66,7 +67,12 @@ class _LoginPageState extends State<LoginPage> {
                 RaisedButton(
                   padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
                   child: Text('로그인'),
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage())),
+                  onPressed: () {
+                    http.post('http://192.168.4.1/connect?id=$_usernameController&pw=$_passwordController');
+                    //_loginpost(_usernameController, _passwordController);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MainPage()));
+                  },
                 ),
                 ButtonBar(children: <Widget>[
                   FlatButton(
@@ -83,5 +89,8 @@ class _LoginPageState extends State<LoginPage> {
           ],
         )
     );
+  }
+  void _loginpost(id, pw) {
+    http.post('http://192.168.4.1/connect?id=$id&pw=$pw');
   }
 }

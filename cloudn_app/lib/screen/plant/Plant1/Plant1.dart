@@ -1,11 +1,11 @@
 import 'package:cloudnapp/model/TreeView_document.dart';
-import 'ultrafine_dust.dart';
-import 'CO.dart';
-import 'CO2.dart';
-import 'chemical.dart';
-import 'fine_dust.dart';
-import 'humid.dart';
-import 'temp.dart';
+import 'air/temp.dart';
+import 'air/ultrafine_dust.dart';
+import 'air/CO.dart';
+import 'air/CO2.dart';
+import 'air/chemical.dart';
+import 'air/fine_dust.dart';
+import 'air/humid.dart';
 import 'package:flutter/material.dart';
 
 class Plant1 extends StatelessWidget {

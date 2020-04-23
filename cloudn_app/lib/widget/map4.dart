@@ -50,7 +50,7 @@ class map4Page extends StatefulWidget {
 
 class _map4PageState extends State<map4Page> {
   PickResult selectedPlace;
-
+  String lat, lon;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,11 +78,12 @@ class _map4PageState extends State<map4Page> {
                             selectedPlace = result;
                             Navigator.of(context).pop();
                             setState(() {});
-                            List<String> arr = selectedPlace.formattedAddress.split(' ');
-                            print(arr[1]+'\n'+arr[2]);
+                            //List<String> arr = selectedPlace.formattedAddress.split(' ');
+                            //print(arr[1]+'\n'+arr[2]);
+                            print(result.geometry.location.lat);
                           },
-                          autocompleteLanguage: "ko",
-                          region: 'au',
+                          //autocompleteLanguage: "ko",
+                          //region: 'au',
                           /*forceSearchOnZoomChanged: true,
                           automaticallyImplyAppBarLeading: false,
                           autocompleteLanguage: "ko",
@@ -124,7 +125,7 @@ class _map4PageState extends State<map4Page> {
                   );
                 },
               ),
-              //selectedPlace == null ? Container() : Text(selectedPlace.formattedAddress ?? ""),
+              selectedPlace == null ? Container() : Text(selectedPlace.formattedAddress ?? ""),
             ],
           ),
         ));

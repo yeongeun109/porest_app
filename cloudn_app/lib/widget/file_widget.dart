@@ -16,6 +16,7 @@ class FileWidget extends StatelessWidget {
       child: ListTile(
         leading: fileIcon,
         title: fileNameWidget,
+        onTap: (){},
       ),
     );
   }

@@ -38,7 +38,6 @@ class _GetResultState extends State<GetResult>{
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      //title: new Text("Alert Dialog title"),
       content: Container(
         width: double.maxFinite,
         height: 50,

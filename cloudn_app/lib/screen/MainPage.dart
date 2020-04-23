@@ -1,10 +1,8 @@
 import 'package:cloudnapp/screen/Logout_dialog.dart';
 import 'package:cloudnapp/widget/TreeView.dart';
 import 'package:cloudnapp/widget/map4.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_map_location_picker/google_map_location_picker.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -17,7 +15,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  LocationResult _pickedLocation;
   PickResult selectedPlace;
   List<String> arr;
 
@@ -87,7 +84,7 @@ class _MainPageState extends State<MainPage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) {
+                            MaterialPageRoute(builder: (context) => map4()/*{
                               return PlacePicker(
                                 apiKey:
                                     'AIzaSyCsRz7mF4K1lYle6CamNiefCu1UouqhVnQ',
@@ -103,7 +100,7 @@ class _MainPageState extends State<MainPage> {
                                 useCurrentLocation: true,
                                 autocompleteLanguage: "ko",
                               );
-                            }),
+                            }*/),
                           );
                         },
                         iconSize: 50,
