@@ -1,4 +1,5 @@
 import 'package:cloudnapp/model/TreeView_document.dart';
+import '../getdust.dart';
 import 'air/temp.dart';
 import 'air/ultrafine_dust.dart';
 import 'air/CO.dart';
@@ -8,13 +9,39 @@ import 'air/fine_dust.dart';
 import 'air/humid.dart';
 import 'package:flutter/material.dart';
 
-class Plant1 extends StatelessWidget {
+class Plant1 extends StatefulWidget {
   final String directoryName;
-  final List<Document> childData;
 
   const Plant1(
-      {Key key, @required this.directoryName, @required this.childData})
+      {Key key, @required this.directoryName})
       : super(key: key);
+
+  @override
+  _Plant1State createState() => _Plant1State();
+}
+
+class _Plant1State extends State<Plant1> {
+  var loading = false;
+
+  /*Future<Null> getDateTime() async{
+    setState(() {
+      loading = true;
+    });
+
+    final responseData = await GetDust(59,126);
+    setState(() {
+      //date = responseData;
+      loading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDateTime();
+  }*/
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +50,7 @@ class Plant1 extends StatelessWidget {
         backgroundColor: Colors.green[900],
       ),
       body: Center(
-        child: ListView(
+        child: loading ? Center(child: CircularProgressIndicator()) : ListView(
           children: <Widget>[
             SizedBox(height: 30,),
             Row(
@@ -36,7 +63,7 @@ class Plant1 extends StatelessWidget {
                     color: Colors.green[300],
                   ),
                   child: Center(
-                    child: Text(directoryName, style: TextStyle(fontSize: 17, color: Colors.white),),
+                    child: Text(widget.directoryName, style: TextStyle(fontSize: 17, color: Colors.white),),
                   )
                 ),
               ],
@@ -201,7 +228,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Temp(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Temp(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),
@@ -225,7 +252,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Humidity(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Humidity(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),
@@ -249,7 +276,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FineDust(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FineDust(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),
@@ -273,7 +300,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UltrafineDust(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UltrafineDust(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),
@@ -303,7 +330,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChemicalSubstance(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChemicalSubstance(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),
@@ -327,7 +354,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CO2(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CO2(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),
@@ -351,7 +378,7 @@ class Plant1 extends StatelessWidget {
                         width : 70,
                         height: 70,
                       ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CO(directoryName: directoryName,))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CO(directoryName: widget.directoryName,))),
                     )
                   ],
                 ),

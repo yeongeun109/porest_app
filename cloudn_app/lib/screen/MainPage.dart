@@ -1,5 +1,8 @@
 import 'package:cloudnapp/screen/Logout_dialog.dart';
+import 'package:cloudnapp/screen/plant/getdust.dart';
 import 'package:cloudnapp/widget/TreeView.dart';
+import 'package:cloudnapp/widget/changelaluMap.dart';
+import 'package:cloudnapp/widget/datetime.dart';
 import 'package:cloudnapp/widget/map4.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class MainPage extends StatefulWidget {
   static final kInitialPosition = LatLng(-33.8567844, 151.213108);
 
+
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -17,12 +21,37 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   PickResult selectedPlace;
   List<String> arr;
+  double _lat, _lng;
+  Weather_map_xy changeresult;
+  String  time;
+  String date ='nuldsfsdf';
+
+  var loading = false;
+
+  /*Future<Null> getDateTime() async{
+    setState(() {
+      loading = true;
+    });
+
+    final responseData = await GetDate(59,126);
+    setState(() {
+      date = responseData;
+      loading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDateTime();
+  }*/
+
 
   @override
   Widget build(BuildContext context) {
     final height2 = MediaQuery.of(context).size.height - 350;
     return Scaffold(
-        body: Container(
+        body: loading ? Center(child: CircularProgressIndicator()) : Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         children: <Widget>[
@@ -84,23 +113,27 @@ class _MainPageState extends State<MainPage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => map4()/*{
+                            MaterialPageRoute(builder: (context) {
                               return PlacePicker(
                                 apiKey:
                                     'AIzaSyCsRz7mF4K1lYle6CamNiefCu1UouqhVnQ',
                                 onPlacePicked: (result) {
                                   selectedPlace = result;
                                   Navigator.of(context).pop();
+                                  _lat = result.geometry.location.lat;
+                                  _lng = result.geometry.location.lng;
+                                  changeresult = changelaluMap(_lng, _lat);
+                                  //print('${changeresult.x}' + ' ' + '${changeresult.y}');
                                   setState(() {
-                                    arr = selectedPlace.formattedAddress
-                                        .split(' ');
+                                    arr = selectedPlace.formattedAddress.split(' ');
+
                                   });
                                 },
                                 initialPosition: MainPage.kInitialPosition,
                                 useCurrentLocation: true,
                                 autocompleteLanguage: "ko",
                               );
-                            }*/),
+                            }),
                           );
                         },
                         iconSize: 50,
@@ -137,6 +170,10 @@ class _MainPageState extends State<MainPage> {
                     decoration: BoxDecoration(
                       color: Colors.blueGrey,
                     ),
+                    child: InkWell(
+                      onTap: () { GetDust();}
+                    )
+                    //child: Text(date),
                   ),
                 ],
               ),

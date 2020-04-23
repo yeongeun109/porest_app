@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
                   child: Text('로그인'),
                   onPressed: () {
-                    http.post('http://192.168.4.1/connect?id=$_usernameController&pw=$_passwordController');
+                    //http.post('http://192.168.4.1/connect?id=$_usernameController&pw=$_passwordController');
                     //_loginpost(_usernameController, _passwordController);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainPage()));
