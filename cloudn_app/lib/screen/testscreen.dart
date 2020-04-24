@@ -450,68 +450,68 @@ List<Object> list = [
         "items": {
           "item": [
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "PTY",
               "nx": 59,
               "ny": 126,
               "obsrValue": "0"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "REH",
               "nx": 59,
               "ny": 126,
-              "obsrValue": "38"
+              "obsrValue": "44"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "RN1",
               "nx": 59,
               "ny": 126,
               "obsrValue": "0"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "T1H",
               "nx": 59,
               "ny": 126,
-              "obsrValue": "7.6"
+              "obsrValue": "14.3"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "UUU",
               "nx": 59,
               "ny": 126,
-              "obsrValue": "2.7"
+              "obsrValue": "3.5"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "VEC",
               "nx": 59,
               "ny": 126,
-              "obsrValue": "300"
+              "obsrValue": "223"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "VVV",
               "nx": 59,
               "ny": 126,
-              "obsrValue": "-1.5"
+              "obsrValue": "3.8"
             },
             {
-              "baseDate": "20200422",
-              "baseTime": "1100",
+              "baseDate": "20200424",
+              "baseTime": "1400",
               "category": "WSD",
               "nx": 59,
               "ny": 126,
-              "obsrValue": "3.1"
+              "obsrValue": "5.2"
             }
           ]
         },

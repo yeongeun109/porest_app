@@ -19,7 +19,7 @@ class GetDust {
   GetDust(this.finedust, this.ultrafinedust);
 }
 
-GetTm() async{
+GetOutsideDust() async{
   final responseData = await http.post(
       'http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getTMStdrCrdnt?'
           'serviceKey=tQuWrySn7Slv2VuEru%2B%2FzsHhKaW9Cdo82oMxjA2rMSA8osCpN%2FmcfQzoBYySkni%2BmEQniFf%2FlwjlU4JVGm9iMA%3D%3D'

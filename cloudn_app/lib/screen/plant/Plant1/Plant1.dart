@@ -23,12 +23,11 @@ class _Plant1State extends State<Plant1> {
   var loading = false;
 
   OutsideData() async {
-
     setState(() {
       loading = true;
 
     });
-    List future = await GetTm();
+    List future = await GetOutsideDust();
 
     print(future);
     setState(() {

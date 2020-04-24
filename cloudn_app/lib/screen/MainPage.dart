@@ -83,9 +83,10 @@ class _MainPageState extends State<MainPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    arr == null
-                        ? Container()
-                        : Text(arr[1] + '\n' + arr[2] + ' ' + arr[3]),
+                    arr == null ? Container() : (arr[1] == '서울특별시'
+                        ? Text(arr[1] + '\n' + arr[2] + ' ' + arr[3])
+                        : Text(arr[2] + '\n' + arr[3] + ' ' + arr[4])),
+
                     Container(
                       //alignment: Alignment(1.0, 0.0),
                       child: IconButton(
@@ -104,10 +105,10 @@ class _MainPageState extends State<MainPage> {
                                   _lng = result.geometry.location.lng;
                                   changeresult = changelaluMap(_lng, _lat);
                                   //print('${changeresult.x}' + ' ' + '${changeresult.y}');
-                                  setState(() {
+                                  //setState(() {
                                     arr = selectedPlace.formattedAddress.split(' ');
 
-                                  });
+                                  //});
                                 },
                                 initialPosition: MainPage.kInitialPosition,
                                 useCurrentLocation: true,
@@ -151,11 +152,9 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.blueGrey,
                     ),
                     child: InkWell(
-                      onTap: () async{
-                        var obj = await GetTm();
-                        setState(() {
-                          date = obj;
-                      }); },
+                      onTap: () {
+                        GetDate(1, 2);
+                      },
                       child: Text(date)
                     )
                     //child: Text(date),
