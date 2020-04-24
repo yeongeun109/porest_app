@@ -1,5 +1,5 @@
 import 'package:cloudnapp/screen/Logout_dialog.dart';
-import 'package:cloudnapp/screen/plant/getdust.dart';
+import 'package:cloudnapp/widget/getdust.dart';
 import 'package:cloudnapp/widget/TreeView.dart';
 import 'package:cloudnapp/widget/changelaluMap.dart';
 import 'package:cloudnapp/widget/datetime.dart';
@@ -22,36 +22,16 @@ class _MainPageState extends State<MainPage> {
   PickResult selectedPlace;
   List<String> arr;
   double _lat, _lng;
-  Weather_map_xy changeresult;
+  Map_xy changeresult;
   String  time;
   String date ='nuldsfsdf';
-
-  var loading = false;
-
-  /*Future<Null> getDateTime() async{
-    setState(() {
-      loading = true;
-    });
-
-    final responseData = await GetDate(59,126);
-    setState(() {
-      date = responseData;
-      loading = false;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getDateTime();
-  }*/
 
 
   @override
   Widget build(BuildContext context) {
     final height2 = MediaQuery.of(context).size.height - 350;
     return Scaffold(
-        body: loading ? Center(child: CircularProgressIndicator()) : Container(
+        body: Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         children: <Widget>[
@@ -171,7 +151,12 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.blueGrey,
                     ),
                     child: InkWell(
-                      onTap: () { GetDust();}
+                      onTap: () async{
+                        var obj = await GetTm();
+                        setState(() {
+                          date = obj;
+                      }); },
+                      child: Text(date)
                     )
                     //child: Text(date),
                   ),

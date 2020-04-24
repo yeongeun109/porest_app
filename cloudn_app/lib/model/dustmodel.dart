@@ -1,17 +1,31 @@
 import 'dart:convert';
 
-class DustList {
+class FineDustList {
   String pm10Value;
-  String pm25Value;
 
-  DustList(this.pm10Value, this.pm25Value);
+  FineDustList(this.pm10Value);
 
-  factory DustList.fromJson(dynamic json) {
-    return DustList(json['pm10Value'] as String, json['pm25Value'] as String);
+  factory FineDustList.fromJson(dynamic json) {
+    return FineDustList(json['pm10Value'] as String);
   }
 
   @override
   String toString() {
-    return '{${this.pm10Value},${this.pm25Value}}';
+    return '${this.pm10Value}';
+  }
+}
+
+class UltraFineDustList {
+  String pm25Value;
+
+  UltraFineDustList(this.pm25Value);
+
+  factory UltraFineDustList.fromJson(dynamic json) {
+    return UltraFineDustList(json['pm25Value'] as String);
+  }
+
+  @override
+  String toString() {
+    return '${this.pm25Value}';
   }
 }

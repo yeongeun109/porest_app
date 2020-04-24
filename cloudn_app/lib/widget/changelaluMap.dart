@@ -1,9 +1,9 @@
 import 'dart:math';
 
-class Weather_map_xy {
+class Map_xy {
   int x;
   int y;
-  Weather_map_xy(this.x, this.y);
+  Map_xy(this.x, this.y);
 }
 
 class lamc_parameter {
@@ -18,7 +18,7 @@ class lamc_parameter {
   int first; /* 시작여부 (0 = 시작)         */
 }
 
-Weather_map_xy changelaluMap(double longitude, double latitude) {
+Map_xy changelaluMap(double longitude, double latitude) {
   //int NX = 149; /* X 축 격자점 수 */
   //int NY = 253; /* Y 축 격자점 수 */
   double PI, DEGRAD, RADDEG;
@@ -63,5 +63,5 @@ Weather_map_xy changelaluMap(double longitude, double latitude) {
   double y = (ro - ra * cos(theta)) + map.yo;
   x = x + 1.5;
   y = y + 1.5;
-  return Weather_map_xy(x.toInt(), y.toInt());
+  return Map_xy(x.toInt(), y.toInt());
 }
