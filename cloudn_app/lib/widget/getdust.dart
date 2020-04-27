@@ -73,7 +73,7 @@ GetOutsideDust() async{
   String dustlist = responseData3.body;
   var listJson = jsonDecode(dustlist)['list'] as List;
   List finedust = listJson.map((listJson) => FineDustList.fromJson(listJson)).toList();
-  print(finedust);
+  print('미세먼지 리스트 '+ finedust.toString());
   int i = 0;
   while(true){
     if(finedust[i] != null)
@@ -86,7 +86,7 @@ GetOutsideDust() async{
   print(result_finedust);
 
   List ultrafinedust = listJson.map((listJson) => UltraFineDustList.fromJson(listJson)).toList();
-  print(ultrafinedust);
+  print('초미세먼지 리스트 '+ ultrafinedust.toString());
   int j = 0;
   while(true){
     if(ultrafinedust[j] != null)

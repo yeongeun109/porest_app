@@ -13,8 +13,10 @@ class FindPlant extends StatefulWidget {
 }
 
 class _FindPlantState extends State<FindPlant> {
-  List<AP> listModel = [];
   var loading = false;
+  List<String> listModel = ['a', 'b', 'c', 'd', 'e'];
+  /*List<AP> listModel = [];
+
 
   Future<Null> getData() async{
     setState(() {
@@ -37,7 +39,7 @@ class _FindPlantState extends State<FindPlant> {
   void initState() {
     super.initState();
     getData();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class _FindPlantState extends State<FindPlant> {
         backgroundColor: Colors.indigo[700],
       ),
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: <Widget>[
             Container(
                 width: _width,
@@ -62,9 +64,8 @@ class _FindPlantState extends State<FindPlant> {
                     style: TextStyle(fontSize: 17, color: Colors.white),
                   ),
                 )),
-            /*Container(
-              child: loading ? Center(child: CircularProgressIndicator()) : ListView
-                  .builder(
+            Container(
+              child: loading ? Center(child: CircularProgressIndicator()) : ListView.builder(
                 itemCount: listModel.length,
                 itemBuilder: (context, i) {
                   final nDataList = listModel[i];
@@ -72,7 +73,7 @@ class _FindPlantState extends State<FindPlant> {
                     child: InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => GetPasswordDialog(
-                          dName: nDataList.title,
+                          dName: nDataList,
                         )));
                       },
                       child: Card(
@@ -83,7 +84,7 @@ class _FindPlantState extends State<FindPlant> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(nDataList.title, style: TextStyle(
+                              Text(nDataList, style: TextStyle(
                                 fontSize: 18,
                               ),
                               ),
@@ -94,7 +95,7 @@ class _FindPlantState extends State<FindPlant> {
                     ),);
                 },
               ),
-            ),*/
+            ),
           ],
         ),
       ),

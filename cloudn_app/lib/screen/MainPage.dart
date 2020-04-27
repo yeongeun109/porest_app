@@ -2,13 +2,15 @@ import 'package:cloudnapp/screen/Logout_dialog.dart';
 import 'package:cloudnapp/widget/getdust.dart';
 import 'package:cloudnapp/widget/TreeView.dart';
 import 'package:cloudnapp/widget/changelaluMap.dart';
-import 'package:cloudnapp/widget/datetime.dart';
+import 'package:cloudnapp/widget/gettemphumid.dart';
 import 'package:cloudnapp/widget/map4.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../jsontest.dart';
 
 class MainPage extends StatefulWidget {
   static final kInitialPosition = LatLng(-33.8567844, 151.213108);
@@ -23,9 +25,9 @@ class _MainPageState extends State<MainPage> {
   List<String> arr;
   double _lat, _lng;
   Map_xy changeresult;
-  String  time;
+  String time;
   String date ='nuldsfsdf';
-
+  int nx = 56, ny = 128;
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +103,16 @@ class _MainPageState extends State<MainPage> {
                                 onPlacePicked: (result) {
                                   selectedPlace = result;
                                   Navigator.of(context).pop();
+                                  arr = selectedPlace.formattedAddress.split(' ');
                                   _lat = result.geometry.location.lat;
                                   _lng = result.geometry.location.lng;
                                   changeresult = changelaluMap(_lng, _lat);
                                   //print('${changeresult.x}' + ' ' + '${changeresult.y}');
                                   //setState(() {
-                                    arr = selectedPlace.formattedAddress.split(' ');
-
+                                    nx = changeresult.x;
+                                    ny = changeresult.y;
                                   //});
+
                                 },
                                 initialPosition: MainPage.kInitialPosition,
                                 useCurrentLocation: true,
@@ -116,6 +120,7 @@ class _MainPageState extends State<MainPage> {
                               );
                             }),
                           );
+
                         },
                         iconSize: 50,
                       ),
@@ -152,10 +157,15 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.blueGrey,
                     ),
                     child: InkWell(
-                      onTap: () {
-                        GetDate(1, 2);
-                      },
-                      child: Text(date)
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AB()))
+                      //{
+                      //  GetDate(nx, ny);
+                        //print(nx);
+                      //},
+                      //child: Text(date)
                     )
                     //child: Text(date),
                   ),
