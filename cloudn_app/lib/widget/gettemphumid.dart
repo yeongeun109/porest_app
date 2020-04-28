@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:cloudnapp/model/temphumidmodel.dart';
 import 'package:http/http.dart' as http;
 
 List<String> arr_date;
