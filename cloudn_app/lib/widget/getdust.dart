@@ -1,23 +1,13 @@
 import 'dart:convert';
-
 import 'package:cloudnapp/model/dustmodel.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart' as xml;
-import 'package:xml/xml_events.dart' as xml_events;
-//int x =
+
 
 List arr_tm, arr_stationName;
 var resultarr = [];
 FineDustList result_finedust;
 UltraFineDustList result_ultra;
-String result;
-
-
-class GetDust {
-  String finedust;
-  String ultrafinedust;
-  GetDust(this.finedust, this.ultrafinedust);
-}
 
 GetOutsideDust() async{
   final responseData = await http.post(
