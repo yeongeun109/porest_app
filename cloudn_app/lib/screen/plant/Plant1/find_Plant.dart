@@ -1,104 +1,108 @@
-
-import 'dart:convert';
-
-import 'package:cloudnapp/model/APList.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-import 'getpassword_dialog.dart';
-
-class FindPlant extends StatefulWidget {
-  @override
-  _FindPlantState createState() => _FindPlantState();
-}
-
-class _FindPlantState extends State<FindPlant> {
+class FindPlant extends StatelessWidget {
   var loading = false;
-  List<String> listModel = ['a', 'b', 'c', 'd', 'e'];
-  /*List<AP> listModel = [];
-
-
-  Future<Null> getData() async{
-    setState(() {
-      loading = true;
-    });
-
-    final responseData = await http.get("http://172.24.1.1/WifiScan");
-    if(responseData.statusCode == 200){
-      final data = jsonDecode(responseData.body);
-      setState(() {
-        for(Map i in data){
-          listModel.add(AP.fromJson(i));
-        }
-        loading = false;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }*/
 
   @override
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Plant 연결'),
-        backgroundColor: Colors.indigo[700],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Container(
-                width: _width,
-                height: 65,
-                decoration: BoxDecoration(
-                  color: Colors.indigo[200],
-                ),
-                child: Center(
-                  child: Text(
-                    'AP 리스트 중에서 연결할 Plant를 선택해 주세요.',
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
-                )),
-            Container(
-              child: loading ? Center(child: CircularProgressIndicator()) : ListView.builder(
-                itemCount: listModel.length,
-                itemBuilder: (context, i) {
-                  final nDataList = listModel[i];
-                  return Container(
-                    child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => GetPasswordDialog(
-                          dName: nDataList,
-                        )));
-                      },
-                      child: Card(
-                        //color: Colors.lightBlue[50],
-                        margin: EdgeInsets.all(0.3),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 40, top: 17, bottom: 17),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(nDataList, style: TextStyle(
-                                fontSize: 18,
-                              ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),);
-                },
-              ),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text('설정 - Floor'),
+          backgroundColor: Colors.indigo[700],
         ),
+        body: loading
+            ? Center(child: CircularProgressIndicator())
+            : ListView(
+                children: <Widget>[
+                  Container(
+                      width: _width,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        color: Colors.indigo[200],
+                      ),
+                      child: Center(
+                        child: Text(
+                          'AP 리스트 중에서 연결할 Plant를 선택해 주세요.',
+                          style: TextStyle(fontSize: 17, color: Colors.white),
+                        ),
+                      )),
+                  Column(
+                    children: <Widget>[
+                      Divider(height: 1.0, thickness: 2,),
+                      Container(
+                          height: 40,
+                          width: _width,
+                          color: Colors.grey[300],
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                  width: 150,
+                                  alignment: Alignment.centerLeft,
+                                  //color: Colors.blue,
+                                  child: Center(child: Text('ap'))),
+                            ],
+                          )),
+                      Divider(height: 1.0, thickness: 1.5,),
+                      WifiList(wifiname: 'plant_001',lock: false,),
+                      Divider(height: 1.0, thickness: 1.5,),
+                      WifiList(wifiname: 'cloudn_net_2g',lock: true,),
+                      Divider(height: 1.0, thickness: 1.5,),
+                      WifiList(wifiname: 'Public_wifi_01',lock: false,),
+                      Divider(height: 1.0, thickness: 1.5,),
+                      WifiList(wifiname: 'Public_wifi_02',lock: false),
+                      Divider(height: 1.0, thickness: 1.5,),
+                      WifiList(wifiname: 'iptime_2g',lock: false),
+                      Divider(height: 1.0, thickness: 2,),
+                    ],
+                  ),
+
+                ],
+              ));
+  }
+}
+class WifiList extends StatefulWidget {
+  final String wifiname;
+  final bool lock;
+  const WifiList({Key key, @required this.wifiname, @required this.lock}) : super(key: key);
+
+  @override
+  _WifiListState createState() => _WifiListState();
+}
+
+class _WifiListState extends State<WifiList> {
+  bool istouched = false;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){istouched = true;},
+      child: Container(
+          height: 40,
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              istouched ? Container(child: Icon(Icons.check)) : Container(),
+              Container(
+                  width: 120,
+                  child: Center(child: Text(widget.wifiname))),
+              widget.lock ? Container(
+                width: 30,
+                child: Icon(Icons.lock),
+              ) : Container(),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  width: 30,
+                  alignment: Alignment.centerRight,
+                  child: Icon(Icons.wifi),
+                  padding: EdgeInsets.only(right: 30),
+                ),
+              )
+            ],
+          )
       ),
     );
   }
 }
+
