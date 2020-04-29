@@ -42,10 +42,15 @@ GetTempHumid(int x, int y) async{
   String target_humid = 'category: REH';
   int target_num = a.indexOf(target_temp);
 
+  if(a.substring(target_num + 45, target_num+46) == '}'){
+    result_temp = a.substring(target_num + 43, target_num + 45);
+    print('온도: ' + result_temp);
+  }
+  else{
+    result_temp = a.substring(target_num + 43, target_num + 47);
+    print('온도: ' + result_temp);
+  }
 
-
-  result_temp = a.substring(target_num + 43, target_num + 47);
-  print('온도: ' + result_temp);
   //print(a);
 
   int target2_num = a.indexOf(target_humid);
