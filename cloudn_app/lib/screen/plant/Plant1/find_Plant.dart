@@ -71,11 +71,11 @@ class WifiList extends StatefulWidget {
 }
 
 class _WifiListState extends State<WifiList> {
-  bool istouched = false;
+  bool istouched = true;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){istouched = true;},
+      onTap: (){},
       child: Container(
           height: 40,
           width: MediaQuery.of(context).size.width,
