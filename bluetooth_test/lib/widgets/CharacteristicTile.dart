@@ -3,6 +3,7 @@ import 'package:flutter_blue/flutter_blue.dart';
 
 import 'DescriptorTile.dart';
 
+//'Service' 타일 탭하면 생기는 이벤트
 class CharacteristicTile extends StatelessWidget {
   final BluetoothCharacteristic characteristic;
   final List<DescriptorTile> descriptorTiles;

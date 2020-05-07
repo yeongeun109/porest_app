@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:math';
+
 import 'package:bluetoothtest/widgets/CharacteristicTile.dart';
 import 'package:bluetoothtest/widgets/DescriptorTile.dart';
 import 'package:bluetoothtest/widgets/ScanResultTile.dart';
@@ -20,18 +22,15 @@ class FlutterBlueApp extends StatelessWidget {
           initialData: BluetoothState.unknown,
           builder: (c, snapshot) {
             final state = snapshot.data;
-            //블루투스 켜져 있으면 FindDevicesScreen()으로
             if (state == BluetoothState.on) {
               return FindDevicesScreen();
             }
-            //꺼져 있으면 BluetoothOffScreen()으로
             return BluetoothOffScreen(state: state);
           }),
     );
   }
 }
 
-//블루투스가 꺼져있을 때 화면
 class BluetoothOffScreen extends StatelessWidget {
   const BluetoothOffScreen({Key key, this.state}) : super(key: key);
 
@@ -64,7 +63,6 @@ class BluetoothOffScreen extends StatelessWidget {
   }
 }
 
-//블루투스 켜져 있을 때 화면
 class FindDevicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -78,20 +76,17 @@ class FindDevicesScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              /*StreamBuilder<List<BluetoothDevice>>(
-                //2초동안 스트림 생성?
+              StreamBuilder<List<BluetoothDevice>>(
                 stream: Stream.periodic(Duration(seconds: 2))
                     .asyncMap((_) => FlutterBlue.instance.connectedDevices),
                 initialData: [],
-
-                //스트림에 들어온 데이터 처리
                 builder: (c, snapshot) => Column(
                   children: snapshot.data
                       .map((d) => ListTile(
-                    title: Text(d.name), //제목 = name
-                    subtitle: Text(d.id.toString()), //부제목 = id
-                    trailing: StreamBuilder<BluetoothDeviceState>( //타일의 뒷부분
-                     stream: d.state,
+                    title: Text(d.name),
+                    subtitle: Text(d.id.toString()),
+                    trailing: StreamBuilder<BluetoothDeviceState>(
+                      stream: d.state,
                       initialData: BluetoothDeviceState.disconnected,
                       builder: (c, snapshot) {
                         if (snapshot.data ==
@@ -110,21 +105,24 @@ class FindDevicesScreen extends StatelessWidget {
                   ))
                       .toList(),
                 ),
-              ),*/
+              ),
               StreamBuilder<List<ScanResult>>(
-                stream: FlutterBlue.instance.scanResults, //스트림생성(?)
-                initialData: [],         //초기데이터는 없음(?)
+                stream: FlutterBlue.instance.scanResults,
+                initialData: [],
                 builder: (c, snapshot) => Column(
                   children: snapshot.data
-                      .map(          //스냅샷 -> 리스트로 매핑
+                      .map(
                         (r) => ScanResultTile(
                       result: r,
-                      onTap: () => Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        r.device.connect();
-                        return DeviceScreen(device: r.device);
-                      })),
-                    ),
+                      onTap: () {print(r.device.id);
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          r.device.connect();
+                          return DeviceScreen(device: r.device);
+                        }));
+
+                      }
+                      ),
                   )
                       .toList(),
                 ),
@@ -147,7 +145,7 @@ class FindDevicesScreen extends StatelessWidget {
             return FloatingActionButton(
                 child: Icon(Icons.search),
                 onPressed: () => FlutterBlue.instance
-                    .startScan(timeout: Duration(seconds: 4)));
+                    .startScan(timeout: Duration(seconds: 10)));
           }
         },
       ),
@@ -160,7 +158,6 @@ class DeviceScreen extends StatelessWidget {
 
   final BluetoothDevice device;
 
-/* MTU Size, 연필 아이콘 밑에 나올 리스트인데 왜인지 적용이 안됨
   List<int> _getRandomBytes() {
     final math = Random();
     return [
@@ -204,7 +201,7 @@ class DeviceScreen extends StatelessWidget {
       ),
     )
         .toList();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,7 +263,7 @@ class DeviceScreen extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(Icons.refresh),
-                        onPressed: () => device.discoverServices(), //장치에서 제공하는 서비스, 특성 검색
+                        onPressed: () => device.discoverServices(),
                       ),
                       IconButton(
                         icon: SizedBox(
@@ -295,34 +292,12 @@ class DeviceScreen extends StatelessWidget {
                 ),
               ),
             ),
-            /*StreamBuilder<List<BluetoothService>>(
+            StreamBuilder<List<BluetoothService>>(
               stream: device.services,
               initialData: [],
               builder: (c, snapshot) {
                 return Column(
                   children: _buildServiceTiles(snapshot.data),
-                );
-              },
-            ),*/
-            StreamBuilder<BluetoothDeviceState>(
-              stream: device.state,
-              initialData: BluetoothDeviceState.connecting,
-              builder: (c, snapshot) {
-                VoidCallback onPressed;
-                String text ='connecta';
-                return RaisedButton(
-                    onPressed: () => device.disconnect(),
-                    child: Text(
-                      text,
-                    ));
-              },
-            ),
-            StreamBuilder<BluetoothDeviceState>(
-              stream: device.state,
-              initialData: BluetoothDeviceState.connecting,
-              builder: (c, snapshot) {
-                return RaisedButton(
-                    onPressed: () => print(snapshot.data)
                 );
               },
             ),
@@ -331,9 +306,4 @@ class DeviceScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-_connect(BluetoothDevice device) async{
-  await device.connect();
-  print(BluetoothDeviceState);
 }
