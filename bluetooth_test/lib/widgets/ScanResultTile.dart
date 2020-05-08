@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+import '../SecondPage.dart';
+
 class ScanResultTile extends StatelessWidget {
   const ScanResultTile({Key key, this.result, this.onTap}) : super(key: key);
 
@@ -87,16 +89,16 @@ class ScanResultTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: _buildTitle(context),
-      leading: Text(result.rssi.toString()), //leading = 타일의 왼쪽 부분, rssi
-      /* Connect 버튼
-      trailing: RaisedButton(
-        child: Text('CONNECT'),
-        //color: Colors.black,
-        //textColor: Colors.white,
-        onPressed: (result.advertisementData.connectable) ? onTap : null,
-      ),*/
-      children: <Widget>[
+        title: _buildTitle(context),
+        leading: Text(result.rssi.toString()), //leading = 타일의 왼쪽 부분, rssi
+        trailing: RaisedButton(
+            child: Text('Select'),
+            //color: Colors.black,
+            //textColor: Colors.white,
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => SecondPage())),
+        ),
+    children: <Widget>[
         //로컬네임
         _buildAdvRow(
             context, 'Complete Local Name', result.advertisementData.localName),

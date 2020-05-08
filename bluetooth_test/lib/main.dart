@@ -2,6 +2,8 @@ import 'package:bluetoothtest/widgets/ScanResultTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+import 'SecondPage.dart';
+
 void main() {
   runApp(FlutterBlueApp());
 }
@@ -79,6 +81,9 @@ class FindDevicesScreen extends StatelessWidget {
                         (r) => ScanResultTile(
                       result: r,
                       onTap: () {
+                        Navigator.of(context)
+                           .push(MaterialPageRoute(builder: (context) => SecondPage()
+                        ));
                       }
                       ),
                   )
