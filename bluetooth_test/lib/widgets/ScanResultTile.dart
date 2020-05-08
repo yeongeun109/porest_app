@@ -59,6 +59,7 @@ class ScanResultTile extends StatelessWidget {
         .toUpperCase();
   }
 
+  //Manufacture Data
   String getNiceManufacturerData(Map<int, List<int>> data) {
     if (data.isEmpty) {
       return null;
@@ -71,6 +72,7 @@ class ScanResultTile extends StatelessWidget {
     return res.join(', ');
   }
 
+  //Service Data
   String getNiceServiceData(Map<String, List<int>> data) {
     if (data.isEmpty) {
       return null;
@@ -86,13 +88,14 @@ class ScanResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: _buildTitle(context),
-      leading: Text(result.rssi.toString()),
+      leading: Text(result.rssi.toString()), //leading = 타일의 왼쪽 부분, rssi
+      /* Connect 버튼
       trailing: RaisedButton(
         child: Text('CONNECT'),
         //color: Colors.black,
         //textColor: Colors.white,
         onPressed: (result.advertisementData.connectable) ? onTap : null,
-      ),
+      ),*/
       children: <Widget>[
         //로컬네임
         _buildAdvRow(

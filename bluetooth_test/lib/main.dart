@@ -93,10 +93,10 @@ class FindDevicesScreen extends StatelessWidget {
                             BluetoothDeviceState.connected) {
                           return RaisedButton(
                             child: Text('OPEN'),
-                            onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        DeviceScreen(device: d))),
+                            onPressed: () {} //Navigator.of(context).push(
+                                //MaterialPageRoute(
+                                    //builder: (context) =>
+                                      //  DeviceScreen(device: d))),
                           );
                         }
                         return Text(snapshot.data.toString());
@@ -114,13 +114,15 @@ class FindDevicesScreen extends StatelessWidget {
                       .map(
                         (r) => ScanResultTile(
                       result: r,
-                      onTap: () {print(r.device.id);
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) {
-                          r.device.connect();
-                          return DeviceScreen(device: r.device);
-                        }));
-
+                      onTap: () {
+                        //print(r.device.id);
+                        //print(r.advertisementData.serviceData);
+                        //Navigator.of(context)
+                        //    .push(MaterialPageRoute(builder: (context) {
+                        //  r.device.connect();
+                        //  return DeviceScreen(device: r.device);
+                        //}
+                        //));
                       }
                       ),
                   )
@@ -145,15 +147,17 @@ class FindDevicesScreen extends StatelessWidget {
             return FloatingActionButton(
                 child: Icon(Icons.search),
                 onPressed: () => FlutterBlue.instance
-                    .startScan(timeout: Duration(seconds: 10)));
+                    .startScan(timeout: Duration(seconds: 10), withServices: [Guid('0000FEAA-0000-1000-8000-00805F9B34FB')]));
           }
         },
       ),
     );
   }
+  Stream<List <ScanResult>> stream = FlutterBlue.instance.scanResults;
+  //print(stream);
 }
 
-class DeviceScreen extends StatelessWidget {
+/*class DeviceScreen extends StatelessWidget {
   const DeviceScreen({Key key, this.device}) : super(key: key);
 
   final BluetoothDevice device;
@@ -306,4 +310,4 @@ class DeviceScreen extends StatelessWidget {
       ),
     );
   }
-}
+}*/
