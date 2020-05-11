@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Navigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Smart UV Checker 2'),
-          leading:
-              Image(image: AssetImage('images/genuv_logo_small_white.png')),
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image(image: AssetImage('images/genuv_logo_small_white.png'),width: 100,),
+              SizedBox(width: 30),
+              Text('Smart UV Checker 2'),
+            ],
+          ),
           backgroundColor: Color(0xFFef7f11),
         ),
         body: Center(
