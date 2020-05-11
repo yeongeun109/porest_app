@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
-import '../SecondPage.dart';
+import '../Navigation.dart';
 
 class ScanResultTile extends StatelessWidget {
   const ScanResultTile({Key key, this.result, this.onTap}) : super(key: key);
@@ -96,7 +96,7 @@ class ScanResultTile extends StatelessWidget {
             //color: Colors.black,
             //textColor: Colors.white,
             onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => SecondPage())),
+                .push(MaterialPageRoute(builder: (context) => Navigation())),
         ),
     children: <Widget>[
         //로컬네임
@@ -107,6 +107,7 @@ class ScanResultTile extends StatelessWidget {
             '${result.advertisementData.txPowerLevel ?? 'N/A'}'),
         //Manufacturer Data
         _buildAdvRow(
+
             context,
             'Manufacturer Data',
             getNiceManufacturerData(
