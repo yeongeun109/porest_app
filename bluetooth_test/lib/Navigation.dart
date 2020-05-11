@@ -1,7 +1,13 @@
+import 'package:bluetoothtest/uvIntensity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Navigation extends StatelessWidget {
+  final String deviceid;
+  final String ServiceData;
+
+  const Navigation({Key key, @required this.deviceid, @required this.ServiceData}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,89 +17,101 @@ class Navigation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image(image: AssetImage('images/genuv_logo_small_white.png'),width: 100,),
+              Image(
+                image: AssetImage('images/genuv_logo_small_white.png'),
+                width: 100,
+              ),
               SizedBox(width: 30),
-              Text('Smart UV Checker 2'),
+              Expanded(
+                  flex: 1, child: Center(child: Text('Smart UV Checker 2'))),
             ],
           ),
           backgroundColor: Color(0xFFef7f11),
         ),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        body: Column(
           children: <Widget>[
-            SizedBox(
-              width: 200,
-              child: RaisedButton(
-                child: Text(
-                  'UV INTENSITY',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    side: BorderSide(color: Color(0x335f3206), width: 2)),
-                onPressed: () {},
-                color: Color(0xFFef7f11),
-              ),
-            ),
-            SizedBox(height: 30),
-            SizedBox(
-              width: 200,
-              child: RaisedButton(
-                child: Text(
-                  'UV DOSE',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    side: BorderSide(color: Color(0x335f3206), width: 2)),
-                onPressed: () {},
-                color: Color(0xFFef7f11),
-              ),
-            ),
-            SizedBox(height: 30),
-            SizedBox(
-              width: 200,
-              child: RaisedButton(
-                child: Text(
-                  'UVC INDEX',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    side: BorderSide(color: Color(0x335f3206), width: 2)),
-                onPressed: () {},
-                color: Color(0xFFef7f11),
-              ),
-            ),
-            SizedBox(height: 30),
-            SizedBox(
-              width: 200,
-              child: RaisedButton(
-                child: Text(
-                  'UVC SAFE',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    side: BorderSide(color: Color(0x335f3206), width: 2)),
-                onPressed: () {},
-                color: Color(0xFFef7f11),
+            Text('(Device id) $deviceid', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            SizedBox(height: 70),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: 200,
+                    child: RaisedButton(
+                      child: Text(
+                        'UV INTENSITY',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: BorderSide(color: Color(0x335f3206), width: 2)),
+                      onPressed: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => uvIntensity(ServiceData: ServiceData,))),
+                      color: Color(0xFFef7f11),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  SizedBox(
+                    width: 200,
+                    child: RaisedButton(
+                      child: Text(
+                        'UV DOSE',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: BorderSide(color: Color(0x335f3206), width: 2)),
+                      onPressed: () {},
+                      color: Color(0xFFef7f11),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  SizedBox(
+                    width: 200,
+                    child: RaisedButton(
+                      child: Text(
+                        'UVC INDEX',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: BorderSide(color: Color(0x335f3206), width: 2)),
+                      onPressed: () {},
+                      color: Color(0xFFef7f11),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  SizedBox(
+                    width: 200,
+                    child: RaisedButton(
+                      child: Text(
+                        'UVC SAFE',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: BorderSide(color: Color(0x335f3206), width: 2)),
+                      onPressed: () {},
+                      color: Color(0xFFef7f11),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
-        )));
+        ));
   }
 }
