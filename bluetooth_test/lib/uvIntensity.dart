@@ -10,6 +10,11 @@ class uvIntensity extends StatefulWidget {
 }
 
 class _uvIntensityState extends State<uvIntensity> {
+  //final Stream<String> stream = Stream.periodic(Duration(seconds: 1), (x) => x);
+  Future<String> getData() async{
+    String a = await Future.delayed(Duration(seconds: 1));
+    return a;
+  }
   @override
   Widget build(BuildContext context) {
     String str = widget.ServiceData;
@@ -64,6 +69,12 @@ class _uvIntensityState extends State<uvIntensity> {
               ),
             ),
             SizedBox(height: 20),
+            StreamBuilder<int> (
+              stream: stream, //
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                return Text('${snapshot.data} seconds passed'); // 1초에 한번씩 업데이트 된다.
+              },
+            ),
             Container(
               child: Text(result),
               padding: EdgeInsets.all(20),
@@ -77,7 +88,7 @@ class _uvIntensityState extends State<uvIntensity> {
               'MIN : 0.000mW/㎠',
               style: TextStyle(
                 color: Colors.grey[600],
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             SizedBox(height: 20),
@@ -85,7 +96,7 @@ class _uvIntensityState extends State<uvIntensity> {
               'MAX : 0.000mW/㎠',
               style: TextStyle(
                 color: Colors.grey[600],
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             SizedBox(height: 20),
@@ -93,7 +104,7 @@ class _uvIntensityState extends State<uvIntensity> {
               'AVG : 0.000mW/㎠',
               style: TextStyle(
                 color: Colors.grey[600],
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             SizedBox(height: 20),
