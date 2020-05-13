@@ -2,7 +2,6 @@ import 'package:bluetoothtest/widgets/ScanResultTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
-import 'Navigation.dart';
 
 void main() {
   runApp(FlutterBlueApp());
@@ -102,9 +101,15 @@ class FindDevicesScreen extends StatelessWidget {
           } else {
             return FloatingActionButton(
                 child: Icon(Icons.search),
-                onPressed: () => FlutterBlue.instance
-                    .startScan(timeout: Duration(seconds: 10), withServices: [Guid('0000FEAA-0000-1000-8000-00805F9B34FB')]));
-          }
+                onPressed: () {
+                  for(int i = 0; i < 60; i++){
+
+
+                  FlutterBlue.instance
+                    .startScan(timeout: Duration(seconds: 1),
+                    withServices: [Guid('0000FEAA-0000-1000-8000-00805F9B34FB')]);
+                }}
+            );}
         },
       ),
     );

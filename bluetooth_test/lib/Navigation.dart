@@ -1,3 +1,4 @@
+import 'package:bluetoothtest/uvDose.dart';
 import 'package:bluetoothtest/uvIntensity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -68,7 +69,8 @@ class Navigation extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7),
                           side: BorderSide(color: Color(0x335f3206), width: 2)),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => uvDose())),
                       color: Color(0xFFef7f11),
                     ),
                   ),
