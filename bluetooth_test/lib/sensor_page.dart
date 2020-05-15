@@ -4,6 +4,7 @@ import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:oscilloscope/oscilloscope.dart';
+import 'dart:math';
 
 class SensorPage extends StatefulWidget {
   const SensorPage({Key key, this.device}) : super(key: key);
@@ -66,7 +67,6 @@ class _SensorPageState extends State<SensorPage> {
           if (characteristic.uuid.toString() == CHARACTERISTIC_UUID) {
             characteristic.setNotifyValue(!characteristic.isNotifying);
             stream = characteristic.value;
-
             setState(() {
               isReady = true;
             });
@@ -107,6 +107,7 @@ class _SensorPageState extends State<SensorPage> {
   }
 
   String _dataParser(List<int> dataFromDevice) {
+    print(dataFromDevice);
     return utf8.decode(dataFromDevice);
   }
 
@@ -166,10 +167,6 @@ class _SensorPageState extends State<SensorPage> {
                                             fontSize: 24))
                                   ]),
                             ),
-                            Expanded(
-                              flex: 1,
-                              child: oscilloscope,
-                            )
                           ],
                         ));
                   } else {

@@ -127,22 +127,6 @@ class _uvIntensityState extends State<uvIntensity> {
                             borderRadius: BorderRadius.circular(7),
                             side: BorderSide(color: Color(0x335f3206), width: 2)),
                         onPressed: () {
-                          for(int i = 0; i < 10; i++){
-                            print('dffffffffffffff');
-                            FlutterBlue.instance.scan(
-                              timeout: Duration(seconds: 1),
-                              withServices: [
-                                Guid('0000FEAA-0000-1000-8000-00805F9B34FB')
-                              ]
-                            );
-
-                            var stream = FlutterBlue.instance.scanResults;
-                            //stream.listen(print);
-                            //sleep(const Duration(seconds: 5));
-                            //Stream<List<ScanResult>> arr = FlutterBlue.instance.scanResults;
-                            print(stream);
-
-                          }
                         },
                         color: Color(0xFFef7f11),
                       ),
