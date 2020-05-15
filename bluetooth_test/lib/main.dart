@@ -66,6 +66,7 @@ class BluetoothOffScreen extends StatelessWidget {
   }
 }
 
+
 class FindDevicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -120,7 +121,7 @@ class FindDevicesScreen extends StatelessWidget {
                       onTap: () => Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         r.device.connect();
-                        return DeviceScreen(device: r.device);
+                        return SensorPage(device: r.device);
                       })),
                     ),
                   )
@@ -152,6 +153,7 @@ class FindDevicesScreen extends StatelessWidget {
     );
   }
 }
+
 
 class DeviceScreen extends StatelessWidget {
   const DeviceScreen({Key key, this.device}) : super(key: key);

@@ -14,8 +14,8 @@ class SensorPage extends StatefulWidget {
 }
 
 class _SensorPageState extends State<SensorPage> {
-  final String SERVICE_UUID = "0000FEAA-0000-1000-8000-00805F9B34FB";
-  final String CHARACTERISTIC_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
+  final String SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
+  final String CHARACTERISTIC_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
   bool isReady;
   Stream<List<int>> stream;
   List<double> traceDust = List();
@@ -160,7 +160,7 @@ class _SensorPageState extends State<SensorPage> {
                                   children: <Widget>[
                                     Text('Current value from Sensor',
                                         style: TextStyle(fontSize: 14)),
-                                    Text('${currentValue} ug/m3',
+                                    Text(currentValue,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 24))
