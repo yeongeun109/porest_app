@@ -22,8 +22,7 @@ class FlutterBlueApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.lightBlue,
-      home: Navigation(),
-      /*StreamBuilder<BluetoothState>(
+      home: StreamBuilder<BluetoothState>(
           stream: FlutterBlue.instance.state,
           initialData: BluetoothState.unknown,
           builder: (c, snapshot) {
@@ -32,7 +31,7 @@ class FlutterBlueApp extends StatelessWidget {
               return FindDevicesScreen();
             }
             return BluetoothOffScreen(state: state);
-          }),*/
+          }),
     );
   }
 }
@@ -124,7 +123,7 @@ class FindDevicesScreen extends StatelessWidget {
                       onTap: () => Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         r.device.connect();
-                        return SensorPage(device: r.device);
+                        return Navigation(device: r.device,);
                       })),
                     ),
                   )
@@ -150,7 +149,7 @@ class FindDevicesScreen extends StatelessWidget {
                 child: Icon(Icons.search),
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: Duration(seconds: 4),
-                    //withServices:  [Guid('6e400001-b5a3-f393-e0a9-e50e24dcca9e')]
+                    withServices:  [Guid('6e400001-b5a3-f393-e0a9-e50e24dcca9e')]
                 ));
           }
         },

@@ -28,24 +28,49 @@ class _uvcSafeState extends State<uvcSafe> {
           ),
           backgroundColor: Color(0xFFef7f11),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 10),
-            Center(
-              child: Text(
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 10),
+              Text(
                 'Maximum Exposition Time / Day',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.grey[600]
                 ),
               ),
-            ),
-            Text(
-              'UVC Wavelength: 254nm',
-              textAlign: TextAlign.start,
-            )
-          ],
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      'UVC Wavelength: ',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                    InkWell(
+                      child: Text('254nm'),
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context){
+                            return AlertDialog(
+                              content: Stack(
+                                //overflow: Overflow.visible,
+                              )
+                            );
+                          }
+                        );
+                      },
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         )
     );
   }
