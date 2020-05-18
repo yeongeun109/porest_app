@@ -51,7 +51,7 @@ class _uvDoseState extends State<uvDose> {
                     height: 200,
                     child: SimpleTimeSeriesChart.withSampleData(),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 30),
                   Column(
                     //mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,8 @@ class _uvDoseState extends State<uvDose> {
                       Row(
                         children: <Widget>[
                           SizedBox(
-                            height: 20,
+                            width: 140,
+                            height: 25,
                             child: RaisedButton(
                               child: Text('UV Power', style: TextStyle(color: Colors.grey[700])),
                               onPressed: (){},
@@ -70,15 +71,16 @@ class _uvDoseState extends State<uvDose> {
                               color: Colors.white
                             ),
                           ),
-                          SizedBox(width: 100),
-                          Text('dfslfkjsdlfk')
+                          SizedBox(width: 60),
+                          Text('0.000mW/㎠')
                         ],
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        height: 20,
+                        width: 140,
+                        height: 25,
                         child: RaisedButton(
-                            child: Text('UV Power', style: TextStyle(color: Colors.grey[700])),
+                            child: Text('Start ~ End Time', style: TextStyle(color: Colors.grey[700])),
                             onPressed: (){},
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7),
@@ -90,9 +92,10 @@ class _uvDoseState extends State<uvDose> {
                       SizedBox(height: 10),
 
                       SizedBox(
-                        height: 20,
+                        width: 140,
+                        height: 25,
                         child: RaisedButton(
-                            child: Text('UV Power', style: TextStyle(color: Colors.grey[700])),
+                            child: Text('Dose', style: TextStyle(color: Colors.grey[700])),
                             onPressed: (){},
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7),
@@ -101,6 +104,49 @@ class _uvDoseState extends State<uvDose> {
                             color: Colors.white
                         ),
                       ),
+                    ],
+                  ),
+                  SizedBox(height: 30,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      RaisedButton(
+                        child: Text(
+                          'START',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15),
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            side: BorderSide(color: Color(0x335f3206), width: 2)),
+                        onPressed: () {
+                        },
+                        color: Color(0xFFef7f11),
+                      ),
+                      RaisedButton(
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            side: BorderSide(color: Color(0x335f3206), width: 2)),
+                        onPressed: () {},
+                        color: Color(0xFFef7f11),
+                      ),
+                      RaisedButton(
+                        child: Icon(
+                          Icons.save,
+                          color: Colors.white,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            side: BorderSide(color: Color(0x335f3206), width: 2)),
+                        onPressed: () {},
+                        color: Color(0xFFef7f11),
+                      )
                     ],
                   )
                 ]

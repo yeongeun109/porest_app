@@ -1,13 +1,16 @@
 import 'package:bluetoothtest/uvDose.dart';
 import 'package:bluetoothtest/uvIntensity.dart';
+import 'package:bluetoothtest/uvcSafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Navigation extends StatelessWidget {
-  final String deviceid;
-  final String ServiceData;
+import 'uvIndex.dart';
 
-  const Navigation({Key key, @required this.deviceid, @required this.ServiceData}) : super(key: key);
+class Navigation extends StatelessWidget {
+  //final String deviceid;
+  //final String ServiceData;
+
+  //const Navigation({Key key, @required this.deviceid, @required this.ServiceData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class Navigation extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text('(Device id) $deviceid', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            //Text('(Device id) $deviceid', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             SizedBox(height: 70),
             Center(
               child: Column(
@@ -51,7 +54,7 @@ class Navigation extends StatelessWidget {
                           borderRadius: BorderRadius.circular(7),
                           side: BorderSide(color: Color(0x335f3206), width: 2)),
                       onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => uvIntensity(ServiceData: ServiceData,))),
+                          MaterialPageRoute(builder: (context) => uvIntensity(/*ServiceData: ServiceData,*/))),
                       color: Color(0xFFef7f11),
                     ),
                   ),
@@ -79,7 +82,7 @@ class Navigation extends StatelessWidget {
                     width: 200,
                     child: RaisedButton(
                       child: Text(
-                        'UVC INDEX',
+                        'UV INDEX',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -88,7 +91,8 @@ class Navigation extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7),
                           side: BorderSide(color: Color(0x335f3206), width: 2)),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => uvIndex())),
                       color: Color(0xFFef7f11),
                     ),
                   ),
@@ -106,7 +110,8 @@ class Navigation extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7),
                           side: BorderSide(color: Color(0x335f3206), width: 2)),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => uvcSafe())),
                       color: Color(0xFFef7f11),
                     ),
                   ),

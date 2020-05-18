@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:bluetoothtest/sensor_page.dart';
+import 'package:bluetoothtest/uvIntensity.dart';
 import 'package:bluetoothtest/widgets/ScanResultTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+import 'Navigation.dart';
 import 'widgets/CharacteristicTile.dart';
 import 'widgets/DescriptorTile.dart';
 import 'widgets/ServiceTile.dart';
@@ -20,7 +22,8 @@ class FlutterBlueApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.lightBlue,
-      home: StreamBuilder<BluetoothState>(
+      home: Navigation(),
+      /*StreamBuilder<BluetoothState>(
           stream: FlutterBlue.instance.state,
           initialData: BluetoothState.unknown,
           builder: (c, snapshot) {
@@ -29,7 +32,7 @@ class FlutterBlueApp extends StatelessWidget {
               return FindDevicesScreen();
             }
             return BluetoothOffScreen(state: state);
-          }),
+          }),*/
     );
   }
 }
@@ -147,7 +150,8 @@ class FindDevicesScreen extends StatelessWidget {
                 child: Icon(Icons.search),
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: Duration(seconds: 4),
-                    withServices:  [Guid('6e400001-b5a3-f393-e0a9-e50e24dcca9e')]));
+                    //withServices:  [Guid('6e400001-b5a3-f393-e0a9-e50e24dcca9e')]
+                ));
           }
         },
       ),

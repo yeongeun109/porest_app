@@ -6,9 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
 class uvIntensity extends StatefulWidget {
-  final String ServiceData;
+  //final String ServiceData;
 
-  const uvIntensity({Key key, @required this.ServiceData}) : super(key: key);
+  //const uvIntensity({Key key, @required this.ServiceData}) : super(key: key);
 
   @override
   _uvIntensityState createState() => _uvIntensityState();
@@ -23,11 +23,11 @@ class _uvIntensityState extends State<uvIntensity> {
 
   @override
   Widget build(BuildContext context) {
-    String str = widget.ServiceData;
+    /*String str = widget.ServiceData;
     String target = "[";
     int target_num = str.indexOf(target);
     String result = str.substring(
-        target_num, (str.substring(target_num).indexOf("]") + target_num + 1));
+        target_num, (str.substring(target_num).indexOf("]") + target_num + 1));*/
 
     return Scaffold(
         appBar: AppBar(
@@ -46,118 +46,114 @@ class _uvIntensityState extends State<uvIntensity> {
           ),
           backgroundColor: Color(0xFFef7f11),
         ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  child: Row(
                 children: <Widget>[
-                  Container(
-                      child: Row(
-                    children: <Widget>[
-                      Text(
-                        'UV Band : XXX',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          //fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  )),
-                  SizedBox(height: 30),
                   Text(
-                    'UV Power',
+                    'UV Band : XXX',
                     style: TextStyle(
                       color: Colors.grey[600],
                       //fontWeight: FontWeight.bold,
-                      fontSize: 25,
+                      fontSize: 30,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    child: StreamBuilder<List<ScanResult>>(
-                      stream: FlutterBlue.instance.scanResults,
-                      initialData: [],
-                      builder: (c, snapshot) => Text(_result(snapshot.data)),
-                    ),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFFef7f11)),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'MIN : 0.000mW/㎠',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'MAX : 0.000mW/㎠',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'AVG : 0.000mW/㎠',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      RaisedButton(
-                        child: Text(
-                          'START',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            side: BorderSide(color: Color(0x335f3206), width: 2)),
-                        onPressed: () {
-                        },
-                        color: Color(0xFFef7f11),
-                      ),
-                      RaisedButton(
-                        child: Icon(
-                          Icons.camera_alt,
+                ],
+              )),
+              SizedBox(height: 30),
+              Text(
+                'UV Power',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  //fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                /*child: StreamBuilder<List<ScanResult>>(
+                  stream: FlutterBlue.instance.scanResults,
+                  initialData: [],
+                  builder: (c, snapshot) => Text(_result(snapshot.data)),
+                ),*/
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xFFef7f11)),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'MIN : 0.000mW/㎠',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'MAX : 0.000mW/㎠',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'AVG : 0.000mW/㎠',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text(
+                      'START',
+                      style: TextStyle(
                           color: Colors.white,
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            side: BorderSide(color: Color(0x335f3206), width: 2)),
-                        onPressed: () {},
-                        color: Color(0xFFef7f11),
-                      ),
-                      RaisedButton(
-                        child: Icon(
-                          Icons.save,
-                          color: Colors.white,
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            side: BorderSide(color: Color(0x335f3206), width: 2)),
-                        onPressed: () {},
-                        color: Color(0xFFef7f11),
-                      )
-                    ],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                        side: BorderSide(color: Color(0x335f3206), width: 2)),
+                    onPressed: () {
+                    },
+                    color: Color(0xFFef7f11),
+                  ),
+                  RaisedButton(
+                    child: Icon(
+                      Icons.camera_alt,
+                      color: Colors.white,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                        side: BorderSide(color: Color(0x335f3206), width: 2)),
+                    onPressed: () {},
+                    color: Color(0xFFef7f11),
+                  ),
+                  RaisedButton(
+                    child: Icon(
+                      Icons.save,
+                      color: Colors.white,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                        side: BorderSide(color: Color(0x335f3206), width: 2)),
+                    onPressed: () {},
+                    color: Color(0xFFef7f11),
                   )
                 ],
-              ),
-            ),
-          ],
+              )
+            ],
+          ),
         ));
   }
 }
