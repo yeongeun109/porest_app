@@ -9,9 +9,8 @@ import 'uvIndex.dart';
 
 class Navigation extends StatelessWidget {
   final String deviceid;
-  final String ServiceData;
   final BluetoothDevice device;
-  const Navigation({Key key, @required this.deviceid, @required this.ServiceData, this.device}) : super(key: key);
+  const Navigation({Key key, @required this.deviceid, @required this.device}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

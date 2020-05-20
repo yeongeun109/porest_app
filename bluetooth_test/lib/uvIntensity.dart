@@ -10,6 +10,7 @@ class uvIntensity extends StatefulWidget {
   //final String ServiceData;
   const uvIntensity({Key key, this.device}) : super(key: key);
   final BluetoothDevice device;
+
   @override
   _uvIntensityState createState() => _uvIntensityState();
 }
@@ -17,15 +18,16 @@ class uvIntensity extends StatefulWidget {
 class _uvIntensityState extends State<uvIntensity> {
   final String SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
   final String CHARACTERISTIC_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
-  bool isReady;
+  bool isReady, connectionFlag = false;
   Stream<List<int>> stream;
   List<double> traceDust = List();
+  String band;
 
   @override
   void initState() {
     super.initState();
     isReady = false;
-    connectToDevice();
+
   }
 
   connectToDevice() async {
@@ -111,17 +113,23 @@ class _uvIntensityState extends State<uvIntensity> {
     String a = utf8.decode(dataFromDevice);
     print(a);
     List<String> arr = a.split(' ');
-    //print(arr);
-
+    List<int> arr2;
     String result;
-    result = Hex.decode(arr[0]).toString();result += ' ';
-    result += Hex.decode(arr[1]).toString();result += ' ';
-    result += Hex.decode(arr[2]).toString();result += ' ';
-    result += Hex.decode(arr[3]).toString();result += ' ';
-    result += Hex.decode(arr[4]).toString();result += ' ';
-    result += Hex.decode(arr[5]).toString();result += ' ';
-    result += Hex.decode(arr[6]).toString();
-    //print(result);
+
+    if(Hex.decode(arr[1]) <= 3100)
+      result = Hex.decode(arr[1]).toString();
+    else if(Hex.decode(arr[2]) <= 3100)
+      result = Hex.decode(arr[2]).toString();
+    else if(Hex.decode(arr[3]) <= 3100)
+      result = Hex.decode(arr[3]).toString();
+    else
+      result = Hex.decode(arr[4]).toString();
+
+    if(Hex.decode(arr[6]) > 7)
+      band = 'UNKNOWN';
+    else
+      band = 'something';
+
     return result;
   }
 
@@ -156,7 +164,7 @@ class _uvIntensityState extends State<uvIntensity> {
                     child: Row(
                   children: <Widget>[
                     Text(
-                      'UV Band : XXX',
+                      'UV Band : ${band}',
                       style: TextStyle(
                         color: Colors.grey[600],
                         //fontWeight: FontWeight.bold,
@@ -187,10 +195,8 @@ class _uvIntensityState extends State<uvIntensity> {
 
                       if (snapshot.connectionState ==
                           ConnectionState.active) {
-                        print(snapshot.data);
                         var currentValue = _dataParser(snapshot.data);
-                        traceDust.add(double.tryParse(currentValue) ?? 0);
-
+                        print(currentValue);
                         return Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -200,9 +206,10 @@ class _uvIntensityState extends State<uvIntensity> {
                                   child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
-                                        Text(currentValue,
-                                            style: TextStyle(fontSize: 16))
-                                      ]),
+                                        Text('${currentValue}',
+                                        style: TextStyle(fontSize: 16))
+                                      ]
+                                  )
                                 ),
                               ],
                             ));
@@ -244,8 +251,9 @@ class _uvIntensityState extends State<uvIntensity> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
+                    !connectionFlag ?
                     RaisedButton(
-                      child: Text(
+                      child:  Text(
                         'START',
                         style: TextStyle(
                             color: Colors.white,
@@ -256,6 +264,25 @@ class _uvIntensityState extends State<uvIntensity> {
                           borderRadius: BorderRadius.circular(7),
                           side: BorderSide(color: Color(0x335f3206), width: 2)),
                       onPressed: () {
+                        connectToDevice();
+                      },
+                      color: Color(0xFFef7f11),
+                    ) : RaisedButton(
+                      child:  Text(
+                        'STOP',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: BorderSide(color: Color(0x335f3206), width: 2)),
+                      onPressed: () {
+                        disconnectFromDevice();
+                        setState(() {
+                          connectionFlag = false;
+                        });
                       },
                       color: Color(0xFFef7f11),
                     ),

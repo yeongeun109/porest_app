@@ -82,7 +82,7 @@ class FindDevicesScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              StreamBuilder<List<BluetoothDevice>>(
+              /*StreamBuilder<List<BluetoothDevice>>(
                 stream: Stream.periodic(Duration(seconds: 2))
                     .asyncMap((_) => FlutterBlue.instance.connectedDevices),
                 initialData: [],
@@ -111,7 +111,7 @@ class FindDevicesScreen extends StatelessWidget {
                   ))
                       .toList(),
                 ),
-              ),
+              ),*/
               StreamBuilder<List<ScanResult>>(
                 stream: FlutterBlue.instance.scanResults,
                 initialData: [],
@@ -123,7 +123,7 @@ class FindDevicesScreen extends StatelessWidget {
                       onTap: () => Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         r.device.connect();
-                        return Navigation(device: r.device,);
+                        return Navigation(deviceid: r.device.id.toString(), device: r.device,);
                       })),
                     ),
                   )
@@ -150,7 +150,8 @@ class FindDevicesScreen extends StatelessWidget {
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: Duration(seconds: 4),
                     withServices:  [Guid('6e400001-b5a3-f393-e0a9-e50e24dcca9e')]
-                ));
+                )
+            );
           }
         },
       ),

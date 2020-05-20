@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+import '../Navigation.dart';
+
 class ScanResultTile extends StatelessWidget {
   const ScanResultTile({Key key, this.result, this.onTap}) : super(key: key);
 
@@ -91,14 +93,14 @@ class ScanResultTile extends StatelessWidget {
         leading: Text(result.rssi.toString()), //leading = 타일의 왼쪽 부분, rssi
         trailing: RaisedButton(
             child: Text('Select'),
-            onPressed: (result.advertisementData.connectable) ? onTap : null,
-            //() => Navigator.of(context)
-                //.push(MaterialPageRoute(builder: (context) =>
-                //Navigation(
-                //  deviceid: result.device.id.toString(),
-                //  ServiceData: result.advertisementData.serviceData.toString(),
-                //)
-            //)),
+            onPressed: //(result.advertisementData.connectable) ? onTap : null,
+            () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) =>
+                Navigation(
+                  deviceid: result.device.id.toString(),
+
+                )
+            )),
         ),
     children: <Widget>[
         //로컬네임
